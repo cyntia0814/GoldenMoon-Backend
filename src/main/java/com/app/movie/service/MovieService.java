@@ -5,50 +5,41 @@
 package com.app.movie.service;
 
 
-import com.app.movie.dto.ReportClientDto;
 import com.app.movie.entities.Client;
-
+import com.app.movie.entities.Movie;
 import com.app.movie.repository.ClientRepository;
-import java.util.Optional;
-
+import com.app.movie.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class ClientService {
+public class MovieService {
 
     @Autowired
-    ClientRepository repository;
+    MovieRepository repository;
 
-    public Iterable<Client> get() {
-        Iterable<Client> response = repository.getAll();
+    public Iterable<Movie> get() {
+        Iterable<Movie> response = repository.getAll();
         return response;
     }
 
-    public ReportClientDto getReport() {
-        Optional<Client> client = repository.findById("6380442df71ad74770fc57e1");
-        ReportClientDto reportClientDto= new ReportClientDto();
-        reportClientDto.birthDate=client.get().getBirthDate();
-        reportClientDto.email=client.get().getEmail();
-        reportClientDto.id=client.get().getId();
-        return reportClientDto;
-    }
-
-    public Client create(Client request) {
+    public Movie create(Movie request) {
 
         return repository.save(request);
 
     }
 
-    public Client update(Client client) {
-        Client clientToUpdate = new Client();
+    public Movie update(Movie movie) {
+        Movie movieToUpdate = new Movie();
 
-        Optional<Client> currentClient = repository.findById(client.getId());
-        if (!currentClient.isEmpty()) {
-            clientToUpdate = client;
-            clientToUpdate=repository.save(clientToUpdate);
+        Optional<Movie> currentMovie = repository.findById(movie.getId());
+        if (!currentMovie.isEmpty()) {
+            movieToUpdate = movie;
+            movieToUpdate=repository.save(movieToUpdate);
         }
-        return clientToUpdate;
+        return movieToUpdate;
     }
 
     public Boolean delete(String id) {

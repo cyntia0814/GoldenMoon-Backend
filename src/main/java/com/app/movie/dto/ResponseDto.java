@@ -8,9 +8,10 @@ package com.app.movie.dto;
  *
  * @author Andres
  */
-public class ReportStatusDto {
-    
-    public Integer completed;
-    public Integer cancelled;
-    
+public class ResponseDto {
+
+    public Boolean status;
+    public String message;
+    public String id;
+
 }

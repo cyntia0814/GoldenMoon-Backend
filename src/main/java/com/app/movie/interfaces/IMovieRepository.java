@@ -4,9 +4,9 @@
  */
 package com.app.movie.interfaces;
 
-import com.app.movie.entities.Client;
+import com.app.movie.entities.Movie;
 import org.springframework.data.repository.CrudRepository;
 
-public interface IClientRepository extends CrudRepository<Client, String> {
+public interface IMovieRepository extends CrudRepository<Movie, String> {
     
 }
