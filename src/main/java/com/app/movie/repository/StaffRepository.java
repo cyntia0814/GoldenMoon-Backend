@@ -4,28 +4,27 @@
  */
 package com.app.movie.repository;
 
-
 import com.app.movie.entities.Movie;
+import com.app.movie.entities.Staff;
 import com.app.movie.interfaces.IMovieRepository;
+import com.app.movie.interfaces.IStaffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class MovieRepository {
+public class StaffRepository {
     
     @Autowired
-    IMovieRepository repository;
+    IStaffRepository repository;
     
-    public Iterable<Movie> getAll(){
+    public Iterable<Staff> getAll(){
         return repository.findAll();
     }
     
-    public Optional<Movie> findById(String id){
-        Optional<Movie> response= repository.findById(id);
+    public Optional<Staff> findById(String id){
+        Optional<Staff> response= repository.findById(id);
         return response;
     }
     
@@ -37,13 +36,8 @@ public class MovieRepository {
         repository.deleteById(id);
     }
     
-    public Movie save(Movie movie){
-        return repository.save(movie);
-    }
-
-    public List<Movie> getMoviePeriod(Date fechauno, Date fechados){
-        return repository.findAllByReleaseDateAfterAndReleaseDateBefore(fechauno,fechados);
+    public Staff save(Staff staff){
+        return repository.save(staff);
     }
     
 }
-

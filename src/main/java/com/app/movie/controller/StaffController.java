@@ -4,36 +4,35 @@
  */
 package com.app.movie.controller;
 
-import com.app.movie.entities.Movie;
-import com.app.movie.service.MovieService;
+
+import com.app.movie.entities.Staff;
+import com.app.movie.service.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/movie")
+@RequestMapping("/api/staff")
 @CrossOrigin(origins = "*")
-public class MovieController {
+public class StaffController {
 
     @Autowired
-    MovieService service;
+    StaffService service;
 
     @GetMapping("")
-    public Iterable<Movie> get() {
+    public Iterable<Staff> get() {
         return service.get();
     }
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Movie create(@RequestBody Movie request) {
+    public Staff create(@RequestBody Staff request) {
         return service.create(request);
     }
 
     @PutMapping("")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Movie update(@RequestBody Movie request) {
+    public Staff update(@RequestBody Staff request) {
         return service.update(request);
     }
 
@@ -41,10 +40,6 @@ public class MovieController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {
         service.delete(id);
-    }
-    @GetMapping("/report-dates/{fechauno}/{fechados}")
-    public List<Movie> getReleaseDate(@PathVariable("fechauno") String d1, @PathVariable("fechados") String d2){
-        return service.getMoviePeriod(d1,d2);
     }
 
 }

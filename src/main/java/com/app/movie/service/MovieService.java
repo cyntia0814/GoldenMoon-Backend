@@ -5,13 +5,16 @@
 package com.app.movie.service;
 
 
-import com.app.movie.entities.Client;
 import com.app.movie.entities.Movie;
-import com.app.movie.repository.ClientRepository;
 import com.app.movie.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,5 +49,21 @@ public class MovieService {
         repository.deleteById(id);
         Boolean deleted = true;
         return deleted;
+    }
+    public List<Movie> getMoviePeriod(String d1, String d2) {
+        SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechauno = new Date();
+        Date fechados = new Date();
+        try {
+            fechauno = parser.parse(d1);
+            fechados = parser.parse(d2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if (fechauno.before(fechados)) {
+            return repository.getMoviePeriod(fechauno, fechados);
+        }else{
+            return new ArrayList<>();
+        }
     }
 }
