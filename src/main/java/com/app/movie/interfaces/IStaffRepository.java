@@ -4,13 +4,11 @@
  */
 package com.app.movie.interfaces;
 
-import com.app.movie.entities.Movie;
+
+import com.app.movie.entities.Staff;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.Date;
-import java.util.List;
 
-public interface IMovieRepository extends CrudRepository<Movie, String> {
-    public List<Movie>findAllByReleaseDateAfterAndReleaseDateBefore(Date fechauno, Date fechados);
+public interface IStaffRepository extends CrudRepository<Staff, String> {
 
 }
