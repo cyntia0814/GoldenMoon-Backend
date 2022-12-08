@@ -4,6 +4,7 @@
  */
 package com.app.movie.controller;
 
+import com.app.movie.dto.ResponseDto;
 import com.app.movie.entities.Category;
 import com.app.movie.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class CategoryController {
 
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public Category create(@RequestBody Category request) {
+    public ResponseDto create(@RequestBody Category request) {
         return service.create(request);
     }
 

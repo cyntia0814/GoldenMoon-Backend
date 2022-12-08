@@ -22,12 +22,16 @@ public class CategoryService {
         return response;
     }
 
-    public Category create(Category request) {
+    public ResponseDto create(Category request) {
 
-        return repository.save(request);
+        Category newCategory = repository.save(request);
 
+        ResponseDto responseDto = new ResponseDto();
+        responseDto.status=true;
+        responseDto.message="Categoría creada correctamente";
+        responseDto.id= newCategory.getId();
+        return responseDto;
     }
-
     public Category update(Category category) {
         Category categoryToUpdate = new Category();
         if (repository.existsById(category.getId())) {

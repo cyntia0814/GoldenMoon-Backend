@@ -16,14 +16,16 @@ import java.util.Optional;
 
 @Repository
 public class MovieRepository {
-    
+
     @Autowired
     IMovieRepository repository;
-    
     public Iterable<Movie> getAll(){
         return repository.findAll();
     }
-    
+
+    public List<Movie> getByName(String name){
+        return repository.getMoviesByName(name);
+    }
     public Optional<Movie> findById(String id){
         Optional<Movie> response= repository.findById(id);
         return response;
