@@ -31,8 +31,6 @@ public class Movie implements Serializable {
     private Date releaseDate;
     private List<Category> categories;
     private String synopsis;
-    private String director;
-    private String actors;
     private List<Staff> staffList;
     private String time;
     private String ageRange;

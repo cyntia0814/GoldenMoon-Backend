@@ -5,15 +5,21 @@
 package com.app.movie.service;
 
 import com.app.movie.dto.ResponseDto;
+import com.app.movie.entities.Client;
+import com.app.movie.entities.Movie;
 import com.app.movie.entities.Score;
 import com.app.movie.repository.ScoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ScoreService {
+    private final String CLIENT_NO_EXISTS = "El cliente no existe, no se puede ingresar calificación";
+    private final String MOVIE_NO_EXISTS = "lA pelicula no existe, no se puede ingresar calificación";
+
 
     @Autowired
     ScoreRepository repository;
@@ -22,6 +28,7 @@ public class ScoreService {
         Iterable<Score> all = repository.getAll();
         return all;
     }
+
 
     public ResponseDto create(Score request) {
         ResponseDto response = new ResponseDto();
@@ -36,7 +43,6 @@ public class ScoreService {
         }
         return response;
     }
-
     public Score update(Score score) {
         Score scoreToUpdate = new Score();
 

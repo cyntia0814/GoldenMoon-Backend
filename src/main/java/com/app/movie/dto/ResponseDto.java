@@ -4,10 +4,7 @@
  */
 package com.app.movie.dto;
 
-/**
- *
- * @author Andres
- */
+
 public class ResponseDto {
 
     public Boolean status;

@@ -16,10 +16,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- *
- * @author Andres
- */
 @Document("client")
 @Getter @Setter
 @AllArgsConstructor

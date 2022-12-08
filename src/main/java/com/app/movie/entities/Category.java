@@ -17,10 +17,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-/**
- *
- * @author Andres
- */
 @Document("category")
 @Getter @Setter
 @AllArgsConstructor
