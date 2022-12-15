@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.movie.controller;
 
 import com.app.movie.dto.ResponseDto;
+import com.app.movie.dto.ScoreDto;
 import com.app.movie.entities.Movie;
 import com.app.movie.entities.Score;
 import com.app.movie.service.MovieService;
@@ -25,20 +22,19 @@ public class ScoreController {
     public Iterable<Score> get() {
         return service.get();
     }
-
+    @GetMapping("/check/{movieId}")
+    public Score check(@PathVariable("movieId") String movieId,@RequestHeader(value="authorization") String authorization) {
+        return service.check(movieId,authorization);
+    }
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseDto create(@RequestBody Score request) {
-        if(request.getScore().intValue()>4){
-            System.out.println("mayor a 4");
-        }
-        return service.create(request);
+    public ResponseDto create(@RequestBody ScoreDto request, @RequestHeader(value="authorization") String authorization) {
+        return service.create(request,authorization);
     }
-
-    @PutMapping("")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Score update(@RequestBody Score request) {
-        return service.update(request);
+    public ResponseDto update(@PathVariable("id") String id,@RequestBody Score request) {
+        return service.update(request,id);
     }
 
     @DeleteMapping("/{id}")
@@ -46,5 +42,4 @@ public class ScoreController {
     public void delete(@PathVariable("id") String id) {
         service.delete(id);
     }
-
 }

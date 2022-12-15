@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.movie.service;
 
 
@@ -30,6 +26,11 @@ public class MovieService {
 
     public Iterable<Movie> get() {
         Iterable<Movie> response = repository.getAll();
+        return response;
+    }
+
+    public Optional<Movie> getById(String id) {
+        Optional<Movie> response = repository.findById(id);
         return response;
     }
 

@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.movie.controller;
 
 import com.app.movie.dto.ReportClientDto;
 import com.app.movie.dto.ResponseDto;
-import com.app.movie.entities.Movie;
 import com.app.movie.service.ClientService;
 import com.app.movie.entities.Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-/**
- *
- * @author Andres
- */
+
 @RestController
 @RequestMapping("/api/client")
 @CrossOrigin(origins = "*")
@@ -38,23 +30,15 @@ public class ClientController {
     public Iterable<Client> get() {
         return service.get();
     }
-
     @GetMapping("/report")
     public ReportClientDto getReport() {
         return service.getReport();
     }
     @PostMapping("")
-    public ResponseEntity<ResponseDto> create(@RequestBody Client request) {
-        ResponseDto responseDto = service.create(request);
-        ResponseEntity<ResponseDto> response = new ResponseEntity<>(responseDto,HttpStatus.CONFLICT);
-
-        if(responseDto.status.booleanValue()==true){
-            response = new ResponseEntity<>(responseDto,HttpStatus.CREATED);
-        }
-
-        return response;
+    @ResponseStatus(HttpStatus.CREATED)
+    public Client create(@RequestBody Client request) {
+        return service.create(request);
     }
-
     @PutMapping("")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public Client update(@RequestBody Client request) {
