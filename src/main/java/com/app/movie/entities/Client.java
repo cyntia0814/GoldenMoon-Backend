@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.movie.entities;
 
 
@@ -31,17 +27,5 @@ public class Client implements Serializable {
     private String lastName;
     private String birthDate;
     private String phone;
-    
-    //@OneToMany(cascade={CascadeType.PERSIST},mappedBy="messa<ge")
-    //@JsonIgnoreProperties("message")
-    //@OneToMany(cascade={CascadeType.PERSIST},mappedBy="client")
-    //@JsonIgnoreProperties({"quadbike","client"})
-   // private List<Message> messages;
-    
-    //@OneToMany(cascade={CascadeType.PERSIST},mappedBy="client")
-   // @JsonIgnoreProperties("client")
-   // private List<Reservation> reservations;
-
-    
     
 }

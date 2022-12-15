@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.movie.controller;
 
 import com.app.movie.dto.ResponseDto;
@@ -13,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/movie")
@@ -26,7 +23,10 @@ public class MovieController {
     public Iterable<Movie> get() {
         return service.get();
     }
-
+    @GetMapping("/{id}")
+    public Optional<Movie> getById(@PathVariable("id") String id) {
+        return service.getById(id);
+    }
     @PostMapping("")
     public ResponseEntity<ResponseDto> create(@RequestBody Movie request) {
         ResponseDto responseDto = service.create(request);
@@ -44,7 +44,6 @@ public class MovieController {
     public Movie update(@RequestBody Movie request) {
         return service.update(request);
     }
-
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable("id") String id) {

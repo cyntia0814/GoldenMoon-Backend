@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.movie.repository;
 
 import com.app.movie.entities.Client;
 import com.app.movie.interfaces.IClientRepository;
 
-import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,9 +16,9 @@ public class ClientRepository {
     public Iterable<Client> getAll(){
         return repository.findAll();
     }
-
-    public List<Client> getByEmail(String email){
-        return repository.getClientByEmail(email);
+    public Optional<Client> findByEmail(String email) {
+        Optional<Client> response=repository.findByEmail(email);
+        return response;
     }
     public Optional<Client> findById(String id){
         Optional<Client> response= repository.findById(id);

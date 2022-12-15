@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.app.movie.interfaces;
 
 import com.app.movie.entities.Client;
@@ -13,7 +9,7 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface IScoreRepository extends MongoRepository<Score, String> {
-
-
+    @Query(value= "{movie.id : ?0,client.id:?1}")
+    Iterable<Score> getScoreByMovieAndClient(String movieId,String clientId);
 
 }

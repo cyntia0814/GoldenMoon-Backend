@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.movie.repository;
 
 
@@ -22,7 +18,6 @@ public class MovieRepository {
     public Iterable<Movie> getAll(){
         return repository.findAll();
     }
-
     public List<Movie> getByName(String name){
         return repository.getMoviesByName(name);
     }
@@ -38,11 +33,9 @@ public class MovieRepository {
     public void deleteById(String id){
         repository.deleteById(id);
     }
-    
     public Movie save(Movie movie){
         return repository.save(movie);
     }
-
     public List<Movie> getMoviePeriod(Date fechauno, Date fechados){
         return repository.findAllByReleaseDateAfterAndReleaseDateBefore(fechauno,fechados);
     }
