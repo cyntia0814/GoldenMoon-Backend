@@ -5,8 +5,13 @@
 package com.app.movie.interfaces;
 
 import com.app.movie.entities.Client;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Optional;
+
 public interface IClientRepository extends CrudRepository<Client, String> {
-    
+
+    @Query(value= "{email : ?0}")
+    Optional<Client> findByEmail(String email);
 }

@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.app.movie.controller;
-
 import com.app.movie.dto.ResponseDto;
+
+
+import com.app.movie.dto.ScoreDto;
 import com.app.movie.entities.Movie;
 import com.app.movie.entities.Score;
 import com.app.movie.service.MovieService;
@@ -12,6 +14,8 @@ import com.app.movie.service.ScoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/score")
@@ -26,19 +30,21 @@ public class ScoreController {
         return service.get();
     }
 
-    @PostMapping("")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseDto create(@RequestBody Score request) {
-        if(request.getScore().intValue()>4){
-            System.out.println("mayor a 4");
-        }
-        return service.create(request);
+    @GetMapping("/check/{movieId}")
+    public Score check(@PathVariable("movieId") String movieId,@RequestHeader(value="authorization") String authorization) {
+        return service.check(movieId,authorization);
     }
 
-    @PutMapping("")
+    @PostMapping("")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseDto create(@RequestBody ScoreDto request,@RequestHeader(value="authorization") String authorization) {
+        return service.create(request,authorization);
+    }
+
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public Score update(@RequestBody Score request) {
-        return service.update(request);
+    public ResponseDto update(@PathVariable("id") String id,@RequestBody Score request) {
+        return service.update(request,id);
     }
 
     @DeleteMapping("/{id}")
